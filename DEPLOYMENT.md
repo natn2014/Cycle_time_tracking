@@ -41,6 +41,15 @@ chmod +x install.sh
 ./install.sh /opt/cycle-tracker pi
 ```
 
+**If you get package errors** (e.g., "unable to locate package libwebp6"):
+```bash
+# Use the minimal install script instead
+chmod +x install_minimal.sh
+./install_minimal.sh
+```
+
+The minimal script skips optional packages and uses pip for OpenCV if system package unavailable.
+
 The script will:
 - ✅ Update system packages
 - ✅ Install Python, OpenCV, and dependencies
@@ -227,6 +236,28 @@ python main.py
 ---
 
 ## Troubleshooting
+
+### Package Installation Errors (apt-get)
+
+**Error:** `Unable to locate package libwebp6` or similar
+
+**Cause:** Package names vary between Raspberry Pi OS versions (Bookworm vs Bullseye).
+
+**Solution:**
+```bash
+# Use the minimal install script instead
+cd ~/cycle_time_tracking
+chmod +x install_minimal.sh
+./install_minimal.sh
+```
+
+The minimal script:
+- ✅ Skips optional packages (only installs essential Python + OpenCV)
+- ✅ Handles missing packages gracefully
+- ✅ Uses pip fallback if system packages unavailable
+- ✅ Faster and more reliable
+
+---
 
 ### Service Fails to Start
 

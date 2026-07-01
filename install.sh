@@ -36,25 +36,30 @@ sudo apt-get upgrade -y
 
 # Step 2: Install system dependencies
 echo -e "${BLUE}[2/6] Installing system dependencies...${NC}"
-sudo apt-get install -y \
-    python3-pip \
-    python3-dev \
-    python3-venv \
-    libopencv-dev \
-    python3-opencv \
-    libatlas-base-dev \
-    libjasper-dev \
-    libtiff5 \
-    libjasper1 \
-    libharfbuzz0b \
-    libwebp6 \
-    libtiff5 \
-    libopenjp2-7 \
-    libatlas-base-dev \
-    libagg2 \
-    libcairo2 \
-    libharfbuzz0b \
-    libwebp6
+
+# Essential packages for Raspberry Pi OS (Bookworm)
+PACKAGES=(
+    python3-pip
+    python3-dev
+    python3-venv
+    python3-opencv
+    libatlas-base-dev
+    libjasper1
+    libharfbuzz0b
+    libopenjp2-7
+    libcairo2
+)
+
+# Try to install packages, skip if not found
+for pkg in "${PACKAGES[@]}"; do
+    if apt-cache search "^$pkg$" | grep -q "^$pkg"; then
+        sudo apt-get install -y "$pkg" 2>/dev/null || {
+            echo -e "${YELLOW}Warning: Could not install $pkg (may already be installed)${NC}"
+        }
+    else
+        echo -e "${YELLOW}Info: Package $pkg not found in repositories (may not be needed)${NC}"
+    fi
+done
 
 echo -e "${GREEN}✓ System dependencies installed${NC}"
 

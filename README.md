@@ -71,7 +71,15 @@ sudo systemctl start cycle-tracker
 sudo systemctl status cycle-tracker
 ```
 
-**Full deployment guide: [DEPLOYMENT.md](DEPLOYMENT.md)**
+**If you get package errors** (e.g., "unable to locate package"):
+```bash
+# Use the minimal install script instead
+chmod +x install_minimal.sh
+./install_minimal.sh
+```
+
+**Full deployment guide: [DEPLOYMENT.md](DEPLOYMENT.md)**  
+**Troubleshooting: [INSTALL_TROUBLESHOOTING.md](INSTALL_TROUBLESHOOTING.md)**
 
 ---
 
