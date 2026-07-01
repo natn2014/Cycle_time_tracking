@@ -1,0 +1,35 @@
+camera_index: 0
+camera_width: 640
+camera_height: 480
+target_fps: 30
+
+roi:
+  x: 200
+  y: 150
+  w: 240
+  h: 180
+
+canny_low: 50
+canny_high: 150
+
+match_threshold: 10
+confirm_frames: 5
+absent_frames: 10
+min_cycle_seconds: 2.0
+
+stats_window: 20
+
+display_fullscreen: true
+tab_swap_seconds: 5
+result_hold_seconds: 2
+
+shifts:
+  DAY:
+    start: "08:00"
+    end: "16:00"
+  EVENING:
+    start: "16:00"
+    end: "24:00"
+  NIGHT:
+    start: "00:00"
+    end: "08:00"

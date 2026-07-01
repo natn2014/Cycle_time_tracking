@@ -1,0 +1,25 @@
+[Unit]
+Description=Cycle Time Tracker - Production Line Monitor
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/cycle_time_tracking
+Environment="PATH=/home/pi/cycle_time_tracking/venv/bin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=/home/pi/cycle_time_tracking/venv/bin/python /home/pi/cycle_time_tracking/main.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Optional: Set CPU affinity to avoid performance issues
+# CPUAffinity=0-3
+
+# Optional: Set memory limit (e.g., 512MB)
+# MemoryLimit=512M
+
+[Install]
+WantedBy=multi-user.target
